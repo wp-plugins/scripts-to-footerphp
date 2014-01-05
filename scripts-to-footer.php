@@ -8,7 +8,7 @@ Author: Joshua David Nelson
 Author URI: http://joshuadnelson.com
 License: GPL2
 
-Copyright 2013  Joshua David Nelson  (email : joshuadavidnelson@gmail.com)
+Copyright 2013  Joshua David Nelson  (email : josh@joshuadnelson.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -24,12 +24,12 @@ Copyright 2013  Joshua David Nelson  (email : joshuadavidnelson@gmail.com)
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-function custom_clean_head() { 
+function stf_custom_clean_head() { 
 	remove_action('wp_head', 'wp_print_scripts'); 
 	remove_action('wp_head', 'wp_print_head_scripts', 9); 
 	remove_action('wp_head', 'wp_enqueue_scripts', 1); 
 } 
-add_action( 'wp_enqueue_scripts', 'custom_clean_head' );
+add_action( 'wp_enqueue_scripts', 'stf_custom_clean_head' );
 
 
 ?>
