@@ -8,7 +8,7 @@ Stable tag: 0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This small plugin moves scripts to the footer to help speed up page load times, while keep stylesheets in the header.
+This small plugin moves scripts to the footer to help speed up page load times, while keeping stylesheets in the header.
 
 == Description ==
 
