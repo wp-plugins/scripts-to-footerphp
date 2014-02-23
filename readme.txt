@@ -12,7 +12,7 @@ This small plugin moves scripts to the footer to help speed up page load times, 
 
 == Description ==
 
-This small plugin moves scripts to the footer to help speed up page load times, while keep stylesheets in the header. Note that this only works if you have plugins and a theme that utilizes `wp_enqueue_scripts` correctly.
+This small plugin moves scripts to the footer to help speed up page load times, while keeping stylesheets in the header. Note that this only works if you have plugins and a theme that utilizes `wp_enqueue_scripts` correctly.
 
 Now includes an option to disable the plugin on a specific page.
 
