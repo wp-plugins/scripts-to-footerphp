@@ -1,10 +1,10 @@
 === Scripts To Footer ===
 Contributors: joshuadnelson
-Tags: javascript, footer, speed, head
-Donate link: http://joshuadnelson.com/donate
+Tags: javascript, footer, speed, head, performance
+Donate link: https://squareup.com/market/nelson-wordpress-consulting/donation
 Requires at least: 3.0.1
-Tested up to: 3.8
-Stable tag: 4.3
+Tested up to: 3.8.1
+Stable tag: 0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,13 @@ This small plugin moves scripts to the footer to help speed up page load times, 
 
 == Description ==
 
-This small plugin moves scripts to the footer to help speed up page load times, while keep stylesheets in the header. Note that this only works if you have plugins and a theme that utilizes wp_enqueue_scripts correctly.
+This small plugin moves scripts to the footer to help speed up page load times, while keep stylesheets in the header. Note that this only works if you have plugins and a theme that utilizes `wp_enqueue_scripts` correctly.
+
+Now includes an option to disable the plugin on a specific page.
+
+Finally, if you're comfortable with code you can use the `scripts_to_footer_post_types` filter to change the post types this applies to (it only applies to pages and posts by default). 
+
+[View this plugin on GitHub](https://github.com/joshuadavidnelson/scripts-to-footer)
 
 == Installation ==
 
@@ -24,8 +30,19 @@ e.g.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Once activated, it should work.
 
+== Screenshots ==
+
+1. The metabox that shows up on the Edit screen.
+
 == Changelog ==
 
-= 0.1 =
+= 0.2 =
+Updating code to be object-oriented and added page metabox to disable plugin on specific pages.
 
+= 0.1 =
 Initial release
+
+== Upgrade Notice ==
+
+= 0.2 =
+This upgrade adds options to disable plugin on specific pages.
