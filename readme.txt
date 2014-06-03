@@ -41,6 +41,8 @@ function stf_exclude_my_page( $exclude_page, $post_id ) {
 add_filter( 'scripts_to_footer_exclude_page', 'stf_exclude_my_page' );
 `
 
+Note that the above code will override the checkbox option on the specific page/post.
+
 = View on GitHub =
 [View this plugin on GitHub](https://github.com/joshuadavidnelson/scripts-to-footer)
 
