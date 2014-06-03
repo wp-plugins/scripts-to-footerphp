@@ -43,7 +43,7 @@ if( !defined( 'STF_DOMAIN' ) )
 
 // Plugin Verison
 if( !defined( 'STF_VERSION' ) )
-	define( 'STF_VERSION', '0.4' );
+	define( 'STF_VERSION', '0.5' );
 
 /**
  * Scripts to Footer Class.
