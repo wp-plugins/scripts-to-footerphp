@@ -12,7 +12,7 @@
  * Plugin Name: Scripts-To-Footer
  * Plugin URI: http://wordpress.org/plugins/scripts-to-footerphp/
  * Description: Moves scripts to the footer to decrease page load times, while keeping stylesheets in the header. Requires that plugins and theme correctly utilizes wp_enqueue_scripts hook. Can be disabled via a checkbox on specific pages and posts.
- * Version: 0.3
+ * Version: 0.4
  * Author: Joshua David Nelson
  * Author URI: http://joshuadnelson.com
  * License: GPL2
@@ -43,7 +43,7 @@ if( !defined( 'STF_DOMAIN' ) )
 
 // Plugin Verison
 if( !defined( 'STF_VERSION' ) )
-	define( 'STF_VERSION', '0.3' );
+	define( 'STF_VERSION', '0.4' );
 
 /**
  * Scripts to Footer Class.
@@ -65,7 +65,6 @@ class JDN_Scripts_To_Footer {
 	 */
 	function __construct() {
 		add_action( 'init', array( $this, 'init' ) );
-		add_action( 'init', array( $this, 'initialize_cmb_meta_boxes' ), 50 );
 	}
 
 	/**
@@ -83,6 +82,7 @@ class JDN_Scripts_To_Footer {
 		
 		// Metabox on Edit screen, for Page Override
 		add_filter( 'cmb_meta_boxes', array( $this, 'create_metaboxes' ) );
+		add_action( 'init', array( $this, 'initialize_cmb_meta_boxes' ), 50 );
 		
 		// Add Links to Plugin Bar
 		if( function_exists( 'stf_plugin_links' ) )
@@ -97,12 +97,16 @@ class JDN_Scripts_To_Footer {
 	 * @since 0.1
 	 **/
 	function clean_head() {
-		$excluded_pages = get_post_meta( get_queried_object_id(), 'stf_exclude', true );
-		
-		if( 'on' !== $excluded_pages && !is_admin() ) {
-			remove_action( 'wp_head', 'wp_print_scripts' ); 
-			remove_action( 'wp_head', 'wp_print_head_scripts', 9 ); 
-			remove_action( 'wp_head', 'wp_enqueue_scripts', 1 ); 
+		if( get_queried_object_id() ) {
+			$queried_object_id = get_queried_object_id();
+			$exclude_page = get_post_meta( $queried_object_id, 'stf_exclude', true );
+			$exclude_page = apply_filters( 'scripts_to_footer_exclude_page', $exclude_page, $queried_object_id );
+			
+			if( 'on' !== $exclude_page && !is_admin() ) {
+				remove_action( 'wp_head', 'wp_print_scripts' ); 
+				remove_action( 'wp_head', 'wp_print_head_scripts', 9 ); 
+				remove_action( 'wp_head', 'wp_enqueue_scripts', 1 ); 
+			}
 		}
 	}
 	
@@ -147,9 +151,9 @@ class JDN_Scripts_To_Footer {
 	 **/
 	function initialize_cmb_meta_boxes() {
 		$post_types = apply_filters( 'scripts_to_footer_post_types', array( 'page', 'post' ) );
-	    if( !class_exists( 'cmb_Meta_Box' ) && !empty( $post_types ) ) {
-	        require_once( dirname( __FILE__) . '/lib/metabox/init.php' );
-	    }
+		if( !class_exists( 'cmb_Meta_Box' ) && !empty( $post_types ) ) {
+	        	require_once( dirname( __FILE__) . '/lib/metabox/init.php' );
+	    	}
 	}
 
 }
@@ -166,24 +170,24 @@ $stf_scripts_to_footer = new JDN_Scripts_To_Footer();
  *
  * @return strings plugin links
  */
-function stf_plugin_links( $links, $file ) {
-    static $this_plugin;
-
-	/** Capability Check */
-	if( ! current_user_can( 'install_plugins' ) ) 
-		return $links;
-
-	if( !$this_plugin ) {
-		$this_plugin = plugin_basename(__FILE__);
-	}
-
-	if( $file == $this_plugin ) {
-		$links[] = '<a href="http://wordpress.org/support/plugin/scripts-to-footerphp" title="' . __( 'Support', STF_DOMAIN ) . '">' . __( 'Support', STF_DOMAIN ) . '</a>';
-
-		$links[] = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FGQXZEW8S9UPC" title="' . __( 'Donate', STF_DOMAIN ) . '">' . __( 'Donate', STF_DOMAIN ) . '</a>';
-	}
+if( !function_exists( 'stf_plugin_links' ) ) {
+	function stf_plugin_links( $links, $file ) {
+	    static $this_plugin;
 	
-	return $links;
+		/** Capability Check */
+		if( ! current_user_can( 'install_plugins' ) ) 
+			return $links;
+	
+		if( !$this_plugin ) {
+			$this_plugin = plugin_basename(__FILE__);
+		}
+	
+		if( $file == $this_plugin ) {
+			$links[] = '<a href="http://wordpress.org/support/plugin/scripts-to-footerphp" title="' . __( 'Support', STF_DOMAIN ) . '">' . __( 'Support', STF_DOMAIN ) . '</a>';
+	
+			$links[] = '<a href="http://jdn.im/donate" title="' . __( 'Donate', STF_DOMAIN ) . '">' . __( 'Donate', STF_DOMAIN ) . '</a>';
+		}
+		
+		return $links;
+	}
 }
-
-?>
