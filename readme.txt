@@ -4,7 +4,7 @@ Tags: javascript, footer, speed, head, performance
 Donate link: http://jdn.im/donate
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 0.4
+Stable tag: 0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,7 +29,7 @@ add_filter( 'scripts_to_footer_post_types', 'stf_add_cpt_support' );
 `
 
 = Excluding Pages/Posts Via Filter =
-As of version 0.4 you can either use the checkbox option to disable the plugin's action on a specific page/post, or you can utilize a filter. The filter also passes the post/page id, which might be useful for more advanced development. For example:
+As of version 0.5 you can either use the checkbox option to disable the plugin's action on a specific page/post, or you can utilize a filter. The filter also passes the post/page id, which might be useful for more advanced development. For example:
 
 `
 function stf_exclude_my_page( $exclude_page, $post_id ) {
@@ -60,6 +60,9 @@ e.g.
 
 == Changelog ==
 
+= 0.5 =
+Reverted metabox version to previous - invalid error was sneaking through.
+
 = 0.4 =
 Added filter to exclude pages, updated metabox version, plugin version bump and updated readme.txt file.
 
@@ -73,6 +76,9 @@ Updating code to be object-oriented and added page metabox to disable plugin on 
 Initial release
 
 == Upgrade Notice ==
+
+= 0.5 =
+Please update to avoid an error on 0.4 version. If you're updating from version 0.3 or earlier, you'll get a new filter.
 
 = 0.4 =
 Adds filter for excluded page ids and updated to most current metabox system.
