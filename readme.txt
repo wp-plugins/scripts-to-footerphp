@@ -108,10 +108,8 @@ e.g.
 1. The metabox that shows up on the Edit screen.
 2. The settings page.
 
-
 == Changelog ==
 
-=======
 = 0.6 =
 Large number of improvements:
 - Add settings page with global disable options for home page, search pages, post type archives, taxonomy archives, and other archives.
@@ -141,10 +139,8 @@ Updating code to be object-oriented and added page metabox to disable plugin on 
 = 0.1 =
 Initial release
 
-
 == Upgrade Notice ==
 
-=======
 = 0.6 =
 Large improvements, including: a settings page to resolve issues on archives and blog roll pages, setting to keep jQuery in the header, and updated filters. Refer to the documentation if you are using a filter currently, as they have changed, prior to updating.
 
