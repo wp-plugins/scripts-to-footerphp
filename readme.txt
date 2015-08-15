@@ -88,7 +88,7 @@ e.g.
 1. The metabox that shows up on the Edit screen.
 2. The settings page.
 
-== FAQ ==
+== Frequently Asked Questions ==
 
 1. My scripts are not moving to the footer. This is likely due to one of three things:
  - The theme you're using is not enqueuing scripts per [WordPress standards](https://codex.wordpress.org/Function_Reference/wp_enqueue_script#Using_a_Hook).
