@@ -29,7 +29,7 @@ Specifically for jQuery, see the settings page option, as it is a common request
 
 For any other scripts, use this filter:
 `
-//add_filter( 'stf_exclude_scripts', 'jdn_header_scripts', 10, 1 );
+add_filter( 'stf_exclude_scripts', 'jdn_header_scripts', 10, 1 );
 function jdn_header_scripts( $scripts ) {
 	$scripts[] = 'backbone'; // Replace 'backbone' with the script slug
 	return $scripts;
